@@ -1,16 +1,15 @@
-import { defineComponent, reactive, toRefs } from "@vue/composition-api";
+import { defineComponent, reactive, toRefs } from "vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "",
   components: {},
-  setup(prop, { root }) {
-    const data = reactive({});
-    console.log("prop", prop);
+  setup() {
+    const router = useRouter();
     const handleGoToIndex = () => {
-      root.$router.push("/");
+      router.push("/");
     };
     return {
-      ...toRefs(data),
       handleGoToIndex,
     };
   },

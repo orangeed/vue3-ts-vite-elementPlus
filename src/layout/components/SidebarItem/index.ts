@@ -1,6 +1,6 @@
 import { isExternal } from "../../../utils/validate";
 import path from "path-browserify";
-import { defineComponent, reactive, toRefs, ref } from "@vue/composition-api";
+import { defineComponent, reactive, toRefs, ref } from "vue";
 
 export default defineComponent({
   name: "SidebarItem",
@@ -23,7 +23,7 @@ export default defineComponent({
       default: false,
     },
   },
-  setup(prop, { root }) {
+  setup(prop) {
     const resolvePath = (routePath: string) => {
       if (isExternal(routePath)) {
         return routePath;

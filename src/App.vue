@@ -1,20 +1,14 @@
+<!-- App.vue -->
 <template>
-    <!-- :locale="zhCN" -->
-    <!-- :theme="getDarkTheme" -->
-    <!-- :theme-overrides="getThemeOverrides"
-    :date-locale="dateZhCN" -->
-  <!-- <NConfigProvider
-  > -->
-    <!-- <AppProvider> -->
-      <RouterView />
-    <!-- </AppProvider> -->
-  <!-- </NConfigProvider> -->
+  <el-config-provider :size="size" :z-index="zIndex">
+    <router-view />
+  </el-config-provider>
 </template>
-<script lang="ts" setup>
-// import { computed } from "@vue/runtime-core";
-// import { zhCN, dateZhCN, darkTheme } from "naive-ui";
 
-// const getDarkTheme = computed(() => (designStore.darkTheme ? darkTheme : undefined));
-// const getDarkTheme = darkTheme;
+<script setup lang="ts">
+import { defineComponent } from "vue";
+import { ElConfigProvider } from "element-plus";
 
+const zIndex = 3000;
+const size = "small";
 </script>

@@ -32,16 +32,6 @@ export const basisRoutes = [
         },
       },
       {
-        path: "/aaa",
-        name: "aaa",
-        component: () => import("../views/dashboard/index.vue"),
-        meta: {
-          hidden: false,
-          affix: true, //是否显示在tagsview
-          title: "aaa",
-        },
-      },
-      {
         path: "categreg",
         name: "categreg",
         component: () => import("../views/home/index.vue"),
@@ -57,7 +47,7 @@ export const basisRoutes = [
             component: () => import("../views/dashboard/index.vue"),
             meta: {
               hidden: false,
-              affix: false, //是否固定在tagsview
+              affix: false, //是否显示在tagsview
               title: "三级菜单",
             },
           },

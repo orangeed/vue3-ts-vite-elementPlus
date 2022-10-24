@@ -1,12 +1,10 @@
-import { defineComponent, reactive, toRefs } from "@vue/composition-api";
+import { defineComponent, reactive, toRefs } from "vue";
 
 export default defineComponent({
   name: "",
   components: {},
-  setup(prop, { root }) {
+  setup() {
     const data = reactive({});
-    console.log('prop',prop);
-    console.log('root',root);
     return {
       ...toRefs(data),
     };

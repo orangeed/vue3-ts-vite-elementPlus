@@ -1,4 +1,5 @@
-import { defineComponent, reactive, toRefs, watch } from "@vue/composition-api";
+import { defineComponent, reactive, toRefs, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 import { basisRoutes } from "../../../router/index";
 
@@ -11,7 +12,9 @@ export default defineComponent({
       default: false,
     },
   },
-  setup(prop, { root }) {
+  setup(prop) {
+    const router = useRouter();
+    const route = useRoute();
     const data = reactive({
       visitedViews: [],
       cachedViews: [],
@@ -61,10 +64,11 @@ export default defineComponent({
       });
       return tags;
     };
-    const isActive = (route: any) => {
-      console.log("route.path", route.path);
-      console.log("root.$route.path", root.$route.path);
-      return route.path === root.$route.path;
+    const isActive = (routeItem: any) => {
+      console.log("route.path", routeItem.path);
+      console.log("root.$route.path", route.path);
+      // return routeItem.path === route.path;
+      return route.path === routeItem.path;
     };
     const isAffix = (tag: any) => {
       return tag.meta && tag.meta.affix;
@@ -90,25 +94,26 @@ export default defineComponent({
     const toLastView = (visitedView: any, view: any) => {
       const latestView = visitedView.slice(-1)[0];
       if (latestView) {
-        root.$router.push(latestView.fullPath);
+        router.push(latestView.fullPath);
       } else {
         // todo 这里可以随便改成哪一个需要的名称
         if (view.name === "dashboard") {
-          root.$router.replace({ path: "/redirect" + view.fullPath });
+          router.replace({ path: "/redirect" + view.fullPath });
         } else {
-          root.$router.push("/");
+          router.push("/");
         }
       }
     };
     initTags();
     watch(
-      () => root.$route,
+      () => route,
       (val) => {
         console.log("val", val);
         addVisitedView(val);
       },
       {
         immediate: true,
+        deep: true,
       }
     );
     return {

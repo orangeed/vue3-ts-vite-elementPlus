@@ -2,7 +2,7 @@
 <template>
   <div
     id="tags-view-container"
-    class="tags-view-container shadow-lg shadow-gray-400 page-bgColor"
+    class="tags-view-container shadow-lg shadow-gray-400 flex items-center"
   >
     <router-link
       v-for="tag in visitedViews"
@@ -12,18 +12,15 @@
       tag="span"
       :class="[
         'tags-view-item tags-view-bgcolor border',
-        themeData ? '' : 'border-stone-500',
+        themeData ? 'border-stone-500' : '',
         isActive(tag) ? 'active' : '',
       ]"
       @click.middle.native="!isAffix(tag) ? closeSelectedTag(tag) : ''"
-      @contextmenu.prevent.native="openMenu(tag, $event)"
     >
       <span class="tags-view-color">{{ tag.title }}</span>
-      <span
-        v-if="!isAffix(tag)"
-        class="el-icon-close"
-        @click.prevent.stop="closeSelectedTag(tag)"
-      />
+      <el-icon v-if="!isAffix(tag)" class="tags-close" @click.prevent.stop="closeSelectedTag(tag)">
+        <Close
+      /></el-icon>
     </router-link>
   </div>
 </template>
@@ -33,8 +30,8 @@
 .tags-view-container {
   height: 34px;
   width: 100%;
-  background: #fff;
-  // border-bottom: 1px solid #d8dce5;
+  // background: #fff;
+  border-bottom: 1px solid #d8dce5;
   // box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
   .tags-view-item {
     display: inline-block;
@@ -42,7 +39,7 @@
     cursor: pointer;
     height: 26px;
     line-height: 26px;
-    // border: 1px solid #d8dce5;
+    border: 1px solid #d8dce5;
     // color: #495060;
     // background: #fff;
     padding: 0 8px;
@@ -56,9 +53,9 @@
       margin-right: 15px;
     }
     &.active {
-      // background-color: #42b983;
-      // color: #e7e7e7;
-      // border-color: #42b983;
+      background-color: #42b983;
+      border-color: #42b983;
+      color: #fff;
       &::before {
         content: "";
         background: #fff;
@@ -75,10 +72,9 @@
 </style>
 <style lang="scss">
 .tags-view-item {
-  .el-icon-close {
+  .tags-close {
     width: 16px;
     height: 16px;
-    vertical-align: 2px;
     border-radius: 50%;
     text-align: center;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);

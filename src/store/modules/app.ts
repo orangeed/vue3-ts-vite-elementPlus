@@ -1,4 +1,4 @@
-import { getStorge, setStorge } from "../../utils/auth";
+import { getStorge, setStorge } from "../../utils/storage";
 
 const state = {
   sidebar: {
