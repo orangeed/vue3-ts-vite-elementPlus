@@ -1,27 +1,10 @@
-import axios from 'axios';
+import request from "../utils/request";
+import { Login } from "./type";
 
-/**
- * AXIOS INTERCEPTOR
- * INTERCEPTORS.REQEUST.USE => BEFORE REQUEST
- * INTERCEPTORS.RESPONSE.USE => AFTER RESPONE
- */
-
-const service = axios.create({
-    baseURL: 'http://www.sample.com',
-    withCredentials: true,
-    timeout: 30000
-})
-
-service.interceptors.request.use((config) => {
-
-}, (error) => {
-
-})
-
-service.interceptors.response.use((response) => {
-
-}, (error) => {
-
-})
-
-export default service;
+export const login = (data: Login): Promise<any> => {
+  return request({
+    url: "/login",
+    method: "post",
+    data,
+  });
+};
